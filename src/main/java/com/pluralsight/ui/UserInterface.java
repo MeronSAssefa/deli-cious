@@ -1,5 +1,7 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.model.Order;
+
 import java.util.Scanner;
 
 public class UserInterface {
@@ -26,7 +28,9 @@ public class UserInterface {
 
                case "1":
                    System.out.println("Starting a new order");
-                   displayOrderScreen();
+                   // creating a new order object
+                   Order currentOrder = new Order();
+                   displayOrderScreen(currentOrder);
                    break;
                case "0":
                    System.out.println("You have Exited");
@@ -42,7 +46,7 @@ public class UserInterface {
        }
     }
 
-    public void displayOrderScreen() {
+    public void displayOrderScreen(Order currentOrder) {
 
         boolean ordering = true;
 
