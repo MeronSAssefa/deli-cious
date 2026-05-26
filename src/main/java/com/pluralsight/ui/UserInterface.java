@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.model.Chips;
 import com.pluralsight.model.Order;
 
 import java.util.Scanner;
@@ -21,7 +22,7 @@ public class UserInterface {
        System.out.println("0) Exit");
        System.out.println("Please choose an option");
 
-       String choice = scanner.nextLine();
+       String choice = scanner.nextLine().strip();
 
 
            switch (choice) {
@@ -58,7 +59,7 @@ public class UserInterface {
             System.out.println("0) Cancel order");
             System.out.println("Please choose an option");
 
-            String choice = scanner.nextLine();
+            String choice = scanner.nextLine().strip();
 
             switch (choice){
                 case "1":
@@ -69,6 +70,8 @@ public class UserInterface {
                     break;
                 case "3":
                     System.out.println("Adding Chips");
+
+                    addChipsToOrder(currentOrder);
                     break;
                 case "4":
                     System.out.println("Checking out");
@@ -87,4 +90,17 @@ public class UserInterface {
 
         }
     }
+    public void addChipsToOrder(Order currnetOrder){
+
+        System.out.println("What type of chips would you like?");
+
+        String chipsChoice = scanner.nextLine();
+
+        Chips chips = new Chips(chipsChoice);
+
+        currnetOrder.addChip(chips);
+
+        System.out.println(chipsChoice + " Chips added to your order");
+    }
+
 }
