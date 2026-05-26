@@ -1,6 +1,6 @@
 package com.pluralsight.model;
 
-public class Chips {
+public class Chips implements OrderItem {
 
     private String type;
     private double price;
@@ -14,6 +14,7 @@ public class Chips {
         return type;
     }
 
+    @Override
     public double getPrice() {
         return price;
     }

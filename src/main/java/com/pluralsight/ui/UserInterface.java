@@ -3,6 +3,7 @@ package com.pluralsight.ui;
 import com.pluralsight.model.Chips;
 import com.pluralsight.model.Drink;
 import com.pluralsight.model.Order;
+import com.pluralsight.model.Sandwich;
 
 import java.util.Scanner;
 
@@ -65,6 +66,7 @@ public class UserInterface {
             switch (choice){
                 case "1":
                     System.out.println("Adding Sandwiches");
+                    addSandwichToOrder(currentOrder);
                     break;
                 case "2":
                     System.out.println("Adding Drinks");
@@ -122,6 +124,30 @@ public class UserInterface {
         currentOrder.addDrink(drink);
 
         System.out.println(size + " " + flavor + " drink added to your order.");
+    }
+
+    public void addSandwichToOrder(Order currentOrder) {
+
+        System.out.println("What size sandwich would you like?");
+        System.out.println("4) 4 inch");
+        System.out.println("8) 8 inch");
+        System.out.println("12) 12 inch");
+        System.out.print("Enter size: ");
+        String size = scanner.nextLine();
+
+        System.out.println("What bread would you like?");
+        System.out.println("White");
+        System.out.println("Wheat");
+        System.out.println("Rye");
+        System.out.println("Wrap");
+        System.out.print("Enter bread: ");
+        String bread = scanner.nextLine();
+
+        Sandwich sandwich = new Sandwich(size, bread);
+
+        currentOrder.addSandwich(sandwich);
+
+        System.out.println(size + " inch " + bread + " sandwich added to your order.");
     }
 
 }
