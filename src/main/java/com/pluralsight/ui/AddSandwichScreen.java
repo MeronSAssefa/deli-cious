@@ -12,40 +12,56 @@ public class AddSandwichScreen {
 
     public void addSandwichToOrder(Order currentOrder) {
 
-        System.out.println("What size sandwich would you like?");
-        System.out.println("4) 4 inch");
-        System.out.println("8) 8 inch");
-        System.out.println("12) 12 inch");
-        System.out.print("Enter size: ");
-        String size = scanner.nextLine();
+        String size = "";
+        boolean validSize = false;
 
-        System.out.println("What bread would you like?");
-        System.out.println("1) White");
-        System.out.println("2) Wheat");
-        System.out.println("3) Rye");
-        System.out.println("4) Wrap");
-        System.out.print("Choose bread: ");
+        while (!validSize) {
+            System.out.println("What size sandwich would you like?");
+            System.out.println("4) 4 inch");
+            System.out.println("8) 8 inch");
+            System.out.println("12) 12 inch");
+            System.out.print("Enter size: ");
 
-        String breadChoice = scanner.nextLine().strip();
+            size = scanner.nextLine().strip();
 
+            if (size.equals("4") || size.equals("8") || size.equals("12")) {
+                validSize = true;
+            } else {
+                System.out.println("Invalid size. Please choose 4, 8, or 12.");
+            }
+        }
+
+        String breadChoice = "";
         String bread = "";
+        boolean validBread = false;
 
-        switch (breadChoice) {
-            case "1":
-                bread = "White";
-                break;
-            case "2":
-                bread = "Wheat";
-                break;
-            case "3":
-                bread = "Rye";
-                break;
-            case "4":
-                bread = "Wrap";
-                break;
-            default:
-                System.out.println("Invalid bread option.");
-                return;
+        while (!validBread) {
+            System.out.println("What bread would you like?");
+            System.out.println("1) White");
+            System.out.println("2) Wheat");
+            System.out.println("3) Rye");
+            System.out.println("4) Wrap");
+            System.out.print("Choose bread: ");
+
+            breadChoice = scanner.nextLine().strip();
+
+            if (breadChoice.equals("1") || breadChoice.equals("2") ||
+                    breadChoice.equals("3") || breadChoice.equals("4")) {
+                validBread = true;
+            }
+            else {
+                System.out.println("Invalid bread option. Please choose 1, 2, 3, or 4.");
+            }
+        }
+
+        if (breadChoice.equals("1")) {
+            bread = "White";}
+        else if (breadChoice.equals("2")) {
+            bread = "Wheat";}
+        else if (breadChoice.equals("3")) {
+            bread = "Rye";}
+        else if (breadChoice.equals("4")) {
+            bread = "Wrap";
         }
 
         Sandwich sandwich = new Sandwich(size, bread);
