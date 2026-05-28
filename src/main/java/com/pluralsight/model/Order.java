@@ -26,4 +26,35 @@ public class Order {
     public void addChip(Chips chips){
         this.chips.add(chips);
     }
+
+    public double getTotal() {
+
+        double total = 0;
+
+        for (Sandwich sandwich : sandwiches) {
+            total += sandwich.getPrice();
+        }
+
+        for (Drink drink : drinks) {
+            total += drink.getPrice();
+        }
+
+        for (Chips chips : chips) {
+            total += chips.getPrice();
+        }
+
+        return total;
+    }
+
+    public ArrayList<Sandwich> getSandwiches() {
+        return sandwiches;
+    }
+
+    public ArrayList<Drink> getDrinks() {
+        return drinks;
+    }
+
+    public ArrayList<Chips> getChips() {
+        return chips;
+    }
 }

@@ -39,7 +39,8 @@ public class OrderScreen {
                     addChipsScreen.addChipsToOrder(currentOrder);
                     break;
                 case "4":
-                    System.out.println("Checking out");
+                    CheckoutScreen checkoutScreen = new CheckoutScreen();
+                    checkoutScreen.displayCheckoutScreen(currentOrder);
                     ordering = false;
                     break;
                 case "0":
