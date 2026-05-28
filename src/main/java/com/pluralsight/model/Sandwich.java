@@ -52,6 +52,13 @@ public class Sandwich implements OrderItem{
 
     @Override
     public double getPrice() {
-        return price;
+
+        double total = price;
+
+        for (Topping topping : toppings) {
+            total += topping.getPrice();
+        }
+
+        return total;
     }
 }
