@@ -20,12 +20,33 @@ public class AddSandwichScreen {
         String size = scanner.nextLine();
 
         System.out.println("What bread would you like?");
-        System.out.println("White");
-        System.out.println("Wheat");
-        System.out.println("Rye");
-        System.out.println("Wrap");
-        System.out.print("Enter bread: ");
-        String bread = scanner.nextLine();
+        System.out.println("1) White");
+        System.out.println("2) Wheat");
+        System.out.println("3) Rye");
+        System.out.println("4) Wrap");
+        System.out.print("Choose bread: ");
+
+        String breadChoice = scanner.nextLine().strip();
+
+        String bread = "";
+
+        switch (breadChoice) {
+            case "1":
+                bread = "White";
+                break;
+            case "2":
+                bread = "Wheat";
+                break;
+            case "3":
+                bread = "Rye";
+                break;
+            case "4":
+                bread = "Wrap";
+                break;
+            default:
+                System.out.println("Invalid bread option.");
+                return;
+        }
 
         Sandwich sandwich = new Sandwich(size, bread);
 
@@ -43,14 +64,21 @@ public class AddSandwichScreen {
 
         currentOrder.addSandwich(sandwich);
 
-        System.out.println(size + " inch " + bread + " sandwich added to your order.");
+        System.out.println("sandwich added to your order.");
     }
     public void addMeat(Sandwich sandwich) {
 
         boolean addingMeat = true;
+        boolean selectingExtraMeat = false;
 
         while (addingMeat) {
-            System.out.println("Select meat:");
+
+            if (selectingExtraMeat) {
+                System.out.println("Select extra meat:");
+            } else {
+                System.out.println("Select meat:");
+            }
+
             System.out.println("1) Steak");
             System.out.println("2) Ham");
             System.out.println("3) Salami");
@@ -58,9 +86,14 @@ public class AddSandwichScreen {
             System.out.println("5) Chicken");
             System.out.println("6) Bacon");
             System.out.println("0) Done");
-            System.out.print("Choose meat: ");
 
-            String choice = scanner.nextLine().strip().toUpperCase();
+            if (selectingExtraMeat) {
+                System.out.print("Choose extra meat: ");
+            } else {
+                System.out.print("Choose meat: ");
+            }
+
+            String choice = scanner.nextLine().strip();
 
             String meatName = "";
 
@@ -83,59 +116,64 @@ public class AddSandwichScreen {
                 case "6":
                     meatName = "Bacon";
                     break;
-                case "7":
-                    addingMeat = false;
-                    continue;
+                case "0":
+                    return;
                 default:
                     System.out.println("Invalid option.");
                     continue;
             }
 
-            System.out.print("Would you like extra " + meatName + "? yes/no: ");
-            String extraChoice = scanner.nextLine();
-
-            boolean extra = extraChoice.equalsIgnoreCase("yes");
-
             double price;
 
-            if (extra) {
+            if (selectingExtraMeat) {
                 price = 2.00;
+                Topping meat = new Topping(meatName, "Meat", true, price);
+                sandwich.addTopping(meat);
+                System.out.println("Extra " + meatName + " added.");
+                addingMeat = false;
             } else {
                 price = 1.00;
-            }
-
-            Topping meat = new Topping(meatName, "Meat", extra, price);
-            sandwich.addTopping(meat);
-
-            if (extra) {
-                System.out.println("Extra " + meatName + " added.");
-            } else {
+                Topping meat = new Topping(meatName, "Meat", false, price);
+                sandwich.addTopping(meat);
                 System.out.println(meatName + " added.");
-            }
 
-            System.out.print("Would you like to add another meat? yes/no: ");
-            String anotherMeat = scanner.nextLine();
+                System.out.print("Would you like extra meat? yes/no: ");
+                String extraChoice = scanner.nextLine();
 
-            if (anotherMeat.equalsIgnoreCase("no")) {
-                addingMeat = false;
+                if (extraChoice.equalsIgnoreCase("yes")) {
+                    selectingExtraMeat = true;
+                } else {
+                    addingMeat = false;
+                }
             }
         }
     }
-
     public void addCheese(Sandwich sandwich) {
 
         boolean addingCheese = true;
+        boolean selectingExtraCheese = false;
 
         while (addingCheese) {
-            System.out.println("Select cheese:");
+
+            if (selectingExtraCheese) {
+                System.out.println("Select extra cheese:");
+            } else {
+                System.out.println("Select cheese:");
+            }
+
             System.out.println("1) American");
             System.out.println("2) Provolone");
             System.out.println("3) Cheddar");
             System.out.println("4) Swiss");
-            System.out.println("5) No cheese");
-            System.out.print("Choose cheese: ");
+            System.out.println("0) No cheese");
 
-            String choice = scanner.nextLine();
+            if (selectingExtraCheese) {
+                System.out.print("Choose extra cheese: ");
+            } else {
+                System.out.print("Choose cheese: ");
+            }
+
+            String choice = scanner.nextLine().strip();
 
             String cheeseName = "";
 
@@ -152,41 +190,41 @@ public class AddSandwichScreen {
                 case "4":
                     cheeseName = "Swiss";
                     break;
-                case "5":
-                    addingCheese = false;
-                    continue;
+                case "0":
+                    return;
                 default:
                     System.out.println("Invalid option.");
                     continue;
             }
 
-            System.out.print("Would you like extra " + cheeseName + "? yes/no: ");
-            String extraChoice = scanner.nextLine();
-
-            boolean extra = extraChoice.equalsIgnoreCase("yes");
-
             double price;
 
-            if (extra) {
+            if (selectingExtraCheese) {
                 price = 1.50;
+
+                Topping cheese = new Topping(cheeseName, "Cheese", true, price);
+                sandwich.addTopping(cheese);
+
+                System.out.println("Extra " + cheeseName + " added.");
+
+                addingCheese = false;
+
             } else {
                 price = 0.75;
-            }
 
-            Topping cheese = new Topping(cheeseName, "Cheese", extra, price);
-            sandwich.addTopping(cheese);
+                Topping cheese = new Topping(cheeseName, "Cheese", false, price);
+                sandwich.addTopping(cheese);
 
-            if (extra) {
-                System.out.println("Extra " + cheeseName + " added.");
-            } else {
                 System.out.println(cheeseName + " added.");
-            }
 
-            System.out.print("Would you like to add another cheese? yes/no: ");
-            String anotherCheese = scanner.nextLine();
+                System.out.print("Would you like extra cheese? yes/no: ");
+                String extraChoice = scanner.nextLine();
 
-            if (anotherCheese.equalsIgnoreCase("no")) {
-                addingCheese = false;
+                if (extraChoice.equalsIgnoreCase("yes")) {
+                    selectingExtraCheese = true;
+                } else {
+                    addingCheese = false;
+                }
             }
         }
     }
@@ -265,7 +303,15 @@ public class AddSandwichScreen {
             }
 
             System.out.print("Would you like to add another topping? yes/no: ");
-            String anotherTopping = scanner.nextLine();
+            String anotherTopping = scanner.nextLine().strip();
+
+            while (!anotherTopping.equalsIgnoreCase("yes") &&
+                    !anotherTopping.equalsIgnoreCase("no")) {
+
+                System.out.print("Invalid answer. Please type yes or no: ");
+                anotherTopping = scanner.nextLine().strip();
+            }
+
 
             if (anotherTopping.equalsIgnoreCase("no")) {
                 addingToppings = false;
