@@ -4,7 +4,7 @@ import com.pluralsight.model.Chips;
 import com.pluralsight.model.Drink;
 import com.pluralsight.model.Sandwich;
 import com.pluralsight.model.Topping;
-
+import com.pluralsight.data.ReceiptFileManager;
 
 public class CheckoutScreen {
     public void displayCheckoutScreen(Order currentOrder) {
@@ -52,6 +52,7 @@ public class CheckoutScreen {
         System.out.println("Total: $" + currentOrder.getTotal());
         System.out.println("=========================");
 
-
+        ReceiptFileManager receiptFileManager = new ReceiptFileManager();
+        receiptFileManager.saveReceipt(currentOrder);
     }
 }

@@ -3,6 +3,9 @@ package com.pluralsight.ui;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
 import com.pluralsight.model.Topping;
+import com.pluralsight.model.SmallSandwich;
+import com.pluralsight.model.MediumSandwich;
+import com.pluralsight.model.LargeSandwich;
 
 import java.util.Scanner;
 
@@ -64,7 +67,15 @@ public class AddSandwichScreen {
             bread = "Wrap";
         }
 
-        Sandwich sandwich = new Sandwich(size, bread);
+        Sandwich sandwich;
+
+        if (size.equals("4")) {
+            sandwich = new SmallSandwich(bread);
+        } else if (size.equals("8")) {
+            sandwich = new MediumSandwich(bread);
+        } else {
+            sandwich = new LargeSandwich(bread);
+        }
 
         addMeat(sandwich);
         addCheese(sandwich);
