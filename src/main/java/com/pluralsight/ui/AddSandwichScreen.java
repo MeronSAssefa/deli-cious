@@ -167,6 +167,14 @@ public class AddSandwichScreen {
                 System.out.print("Would you like extra meat? yes/no: ");
                 String extraChoice = scanner.nextLine();
 
+                while (!extraChoice.equalsIgnoreCase("yes") &&
+                        !extraChoice.equalsIgnoreCase("no")) {
+
+                    System.out.print("Invalid answer. Please type yes or no: ");
+                    extraChoice = scanner.nextLine().strip();
+                }
+
+
                 if (extraChoice.equalsIgnoreCase("yes")) {
                     selectingExtraMeat = true;
                 } else {
@@ -245,7 +253,14 @@ public class AddSandwichScreen {
                 System.out.println(cheeseName + " added.");
 
                 System.out.print("Would you like extra cheese? yes/no: ");
-                String extraChoice = scanner.nextLine();
+                String extraChoice = scanner.nextLine().strip();
+
+                while (!extraChoice.equalsIgnoreCase("yes") &&
+                        !extraChoice.equalsIgnoreCase("no")) {
+
+                    System.out.print("Invalid answer. Please type yes or no: ");
+                    extraChoice = scanner.nextLine().strip();
+                }
 
                 if (extraChoice.equalsIgnoreCase("yes")) {
                     selectingExtraCheese = true;
