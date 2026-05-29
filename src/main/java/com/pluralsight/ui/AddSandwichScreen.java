@@ -329,7 +329,15 @@ public class AddSandwichScreen {
             }
 
             System.out.print("Would you like extra " + toppingName + "? yes/no: ");
-            String extraChoice = scanner.nextLine();
+            String extraChoice = scanner.nextLine().strip();
+
+            while (!extraChoice.equalsIgnoreCase("yes") &&
+                    !extraChoice.equalsIgnoreCase("no")) {
+
+                System.out.print("Invalid answer. Please type yes or no: ");
+                extraChoice = scanner.nextLine().strip();
+            }
+
 
             boolean extra = extraChoice.equalsIgnoreCase("yes");
 
