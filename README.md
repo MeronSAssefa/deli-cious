@@ -22,7 +22,7 @@ This project was created for Capstone 2 to practice object-oriented programming,
 
 The diagram below shows the main classes in the project and how they connect to each other.
 
-![Deli-cious Class Diagram](images/Deli-cious.png)
+![Deli-cious Class Diagram](Images/Deli-cious.png)
 
 ## Project Structure
 
