@@ -11,7 +11,7 @@ This project was created for Capstone 2 to practice object-oriented programming,
 - Display a home screen menu
 - Start a new order
 - Add custom sandwiches
-- Choose sandwich size, bread type, toppings, sauces, and toasted option
+- Choose sandwich size, bread type, toppings, sauces and toasted option
 - Add drinks
 - Add chips
 - View the order total
